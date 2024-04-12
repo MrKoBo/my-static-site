@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        p {
+            color: white;
+            font-family: "Helvetica", "Arial", sans-serif;
+            font-size: 18px;
+        }
+        button:hover {
+            color: rgb(183, 90, 10);
+        }
+        div {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        body {
+            background-color: rgb(183, 90, 10);
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>Welcome to my educational math quiz. I hope you don't miss any of these easy questions.</p>
+    </section>
+
+    <section id="quiz">
+        <h2>Quiz</h2>
+
+        <div id="question1">
+            <p>Question 1: What is 2 + 2?</p>
+            <button id="q1_option1">4</button>
+            <button id="q1_option2">5</button>
+            <button id="q1_option3">3</button>
+            <p id="q1_result"></p>
+        </div>
+
+        <div id="question2">
+            <p>Question 2: What is 3 * 5?</p>
+            <button id="q2_option1">10</button>
+            <button id="q2_option2">15</button>
+            <button id="q2_option3">20</button>
+            <p id="q2_result"></p>
+        </div>
+
+        <div id="question3">
+            <p>Question 3: What is the square root of 16?</p>
+            <button id="q3_option1">2</button>
+            <button id="q3_option2">6</button>
+            <button id="q3_option3">4</button>
+            <p id="q3_result"></p>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>Contact Information</p>
+        <p>About Us</p>
+    </footer>
+
+    <script>
+        document.getElementById('q1_option1').addEventListener('click', function () { checkAnswer('q1_option1'); });
+        document.getElementById('q1_option2').addEventListener('click', function () { checkAnswer('q1_option2'); });
+        document.getElementById('q1_option3').addEventListener('click', function () { checkAnswer('q1_option3'); });
+
+        document.getElementById('q2_option1').addEventListener('click', function () { checkAnswer('q2_option1'); });
+        document.getElementById('q2_option2').addEventListener('click', function () { checkAnswer('q2_option2'); });
+        document.getElementById('q2_option3').addEventListener('click', function () { checkAnswer('q2_option3'); });
+
+        document.getElementById('q3_option1').addEventListener('click', function () { checkAnswer('q3_option1'); });
+        document.getElementById('q3_option2').addEventListener('click', function () { checkAnswer('q3_option2'); });
+        document.getElementById('q3_option3').addEventListener('click', function () { checkAnswer('q3_option3'); });
+
+        function checkAnswer(selectedOption) {
+            const correctAnswers = {
+                q1: "q1_option1",
+                q2: "q2_option2",
+                q3: "q3_option3"
+            };
+
+            const question = selectedOption.split("_")[0];
+            const correctOption = correctAnswers[question];
+
+            const resultElement = document.getElementById(question + "_result");
+            const previousResultElement = resultElement.nextElementSibling;
+            //if result element already exist lets remove it
+            if (previousResultElement) {
+                previousResultElement.remove();
+            }
+
+            if (selectedOption === correctOption) {
+                resultElement.insertAdjacentHTML('afterend', '<p>Correct!</p>');
+            } else {
+                resultElement.insertAdjacentHTML('afterend', '<p>Incorrect. Try again!</p>');
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
